@@ -9,6 +9,7 @@
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import moment from "moment";
 export default {
   name: "HomeView",
   components: {
@@ -25,8 +26,7 @@ export default {
           {
             // this object will be "parsed" into an Event Object
             title: "The Title", // a property!
-            start: "2023-09-01", // a property!
-            end: "2023-09-03", // a property! ** see important note below about 'end' **
+            date: "2023-09-20",
           },
         ],
         dateClick: this.remove,
@@ -64,6 +64,9 @@ export default {
         this.calendarOptions.events[findName].title = nameEvent
           ? nameEvent
           : event.title;
+        this.calendarOptions.events[findName].date = moment(event.start).format(
+          "YYYY-MM-DD"
+        );
       }
     },
   },
